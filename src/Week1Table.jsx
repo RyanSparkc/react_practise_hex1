@@ -122,19 +122,15 @@ function Week1Table() {
             </td>
             <td>{item.price}</td>
             <td>
-              {editingId === item.id && (
+              {editingId === item.id ? (
                 <>
-                  <button 
-                    onClick={() => handleStockChange(item.id, -1)}
-                    disabled={item.stock === 0}
-                  >
-                    -
-                  </button>
+                  <button onClick={() => handleStockChange(item.id, -1)} disabled={item.stock === 0}> - </button>
                   {item.stock}
                   <button onClick={() => handleStockChange(item.id, 1)}>+</button>
                 </>
+              ) : (
+                item.stock
               )}
-              {editingId !== item.id && item.stock}
             </td>
             <td>
               <button onClick={() => handleEdit(item.id)}>
