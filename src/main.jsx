@@ -9,16 +9,19 @@ import Week2Table from './Week2Table.jsx';
 // import ComponentProps from './ComponentProps.jsx';
 // import './index.css'
 // import AsyncAxios from './AsyncAxios.jsx';
-import SummitForm from './SummitForm.jsx';
+// import SummitForm from './SummitForm.jsx';
+import Todo from './Todo.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Week2Table />
     {/* <BootstrapComponent /> */}
     {/* <ArrayMethods /> */}
     {/* <ComponentProps /> */}
     {/* <DataTable /> */}
     {/* <ClassTable /> */}
-    {/* <Week2Table /> */}
+
     {/* <AsyncAxios /> */}
-    <SummitForm />
+    {/* <SummitForm /> */}
+    {/* <Todo /> */}
   </StrictMode>
 );

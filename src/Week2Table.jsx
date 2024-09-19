@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import ProductList from './components/week2/ProductList';
+import CurrentOrder from './components/week2/CurrentOrder';
+import FinalOrder from './components/week2/FinalOrder';
 
 const data = [
   {
@@ -116,110 +119,12 @@ function Week2Table() {
           <div className="row">
             {/* Drink List */}
             <div className="col-md-4">
-              <div className="list-group">
-                {data.map((drink) => (
-                  <a
-                    key={drink.id}
-                    href="#"
-                    className="list-group-item list-group-item-action"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleAddToCart(drink);
-                    }}
-                  >
-                    <div className="d-flex w-100 justify-content-between">
-                      <h5 className="mb-1">{drink.name}</h5>
-                      <small>${drink.price}</small>
-                    </div>
-                    <p className="mb-1">{drink.description}</p>
-                  </a>
-                ))}
-              </div>
+              <ProductList data={data} handleAddToCart={handleAddToCart} />
             </div>
 
             {/* Cart Table */}
             <div className="col-md-8">
-              {cart.length === 0 ? (
-                <div
-                  className="alert alert-primary text-center"
-                  role="alert"
-                >
-                  請選擇商品
-                </div>
-              ) : (
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col" width="50">
-                      操作
-                    </th>
-                    <th scope="col">品項</th>
-                    <th scope="col">描述</th>
-                    <th scope="col" width="90">
-                      數量
-                    </th>
-                    <th scope="col">單價</th>
-                    <th scope="col">小計</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cart.map((drink) => (
-                    <tr key={drink.id}>
-                      <td>
-                        <button
-                          type="button"
-                          className="btn btn-sm btn-danger"
-                          onClick={() => handleRemove(drink.id)}
-                        >
-                          x
-                        </button>
-                      </td>
-                      <td>{drink.name}</td>
-                      <td>
-                        <small>{drink.description}</small>
-                      </td>
-                      <td>
-                        <select
-                          className="form-select"
-                          value={drink.quantity}
-                          onChange={(e) =>
-                            handleQuantityChange(drink.id, e.target.value)
-                          }
-                        >
-                          {Array.from({ length: 10 }, (_, index) => (
-                            <option key={index + 1} value={index + 1}>
-                              {index + 1}
-                            </option>
-                          ))}
-                        </select>
-                      </td>
-                      <td>${drink.price}</td>
-                      <td>${drink.price * drink.quantity}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              )}
-
-              <div className="text-end mb-3">
-                <h5>
-                  總計: <span>${total}</span>
-                </h5>
-              </div>
-
-              {/* Connect textarea to note state */}
-              <textarea
-                className="form-control mb-3"
-                rows="3"
-                placeholder="備註"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-              ></textarea>
-              <div className="text-end">
-                <button className="btn btn-primary" onClick={handleSubmit}>
-                  送出
-                </button>
-              </div>
+              <CurrentOrder cart={cart} total={total} note={note} setNote={setNote} handleRemove={handleRemove} handleQuantityChange={handleQuantityChange} handleSubmit={handleSubmit} />
             </div>
           </div>
 
@@ -228,48 +133,7 @@ function Week2Table() {
 
           <div className="row justify-content-center">
             <div className="col-8">
-              {order.items.length === 0 ? (
-                <div
-                  className="alert alert-secondary text-center"
-                  role="alert"
-                >
-                  尚未建立訂單
-                </div>
-              ) : (
-                <div className="card">
-                  <div className="card-body">
-                    <div className="card-title">
-                      <h5>訂單</h5>
-                    </div>
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">品項</th>
-                          <th scope="col">數量</th>
-                          <th scope="col">小計</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {order.items.map((item, index) => (
-                          <tr key={index}>
-                            <td>{item.name}</td>
-                            <td>{item.quantity}</td>
-                            <td>${item.totals}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                    <div className="text-end">
-                      備註: <span>{order.note}</span>
-                    </div>
-                    <div className="text-end">
-                      <h5>
-                        總計: <span>${order.total}</span>
-                      </h5>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <FinalOrder order={order} />
             </div>
           </div>
         </div>
