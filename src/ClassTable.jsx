@@ -72,7 +72,7 @@ function ClassTable() {
   };
 
   // 總計
-  // call back function, [條件]
+  // callback function, [條件]
   useEffect(() => {
     // 金額加總
     const total = data.reduce((total, item) => total + item.price, 0);
