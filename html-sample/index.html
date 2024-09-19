@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+  <script>
+    // axios.get('https://randomuser.me/api/')
+    // .then(function (response) {
+    //   console.log(response.data);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    // await async
+
+    const asyncFn = async () => {
+      try {
+        const res = await axios.get('https://randomuser.me/api/')
+        console.log(1, res)
+        const { seed } = res.data.info;
+        console.log(2, seed)
+        const res2 = await axios.get(`https://randomuser.me/api/?seed=${seed}`)
+        console.log(3, res2)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    asyncFn()
+  </script>
+
+</body>
+
+</html>

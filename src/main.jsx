@@ -8,7 +8,8 @@ import Week2Table from './Week2Table.jsx';
 // import DataTable from './DataTable.jsx';
 // import ComponentProps from './ComponentProps.jsx';
 // import './index.css'
-
+// import AsyncAxios from './AsyncAxios.jsx';
+import SummitForm from './SummitForm.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <BootstrapComponent /> */}
@@ -16,6 +17,8 @@ createRoot(document.getElementById('root')).render(
     {/* <ComponentProps /> */}
     {/* <DataTable /> */}
     {/* <ClassTable /> */}
-    <Week2Table />
+    {/* <Week2Table /> */}
+    {/* <AsyncAxios /> */}
+    <SummitForm />
   </StrictMode>
 );
