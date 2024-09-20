@@ -101,7 +101,6 @@ function Week2Table() {
       total: total,
       note: note,
     };
-    
     setOrder(orderDetails);
     setCart([]);
     setNote('');
